@@ -1,4 +1,4 @@
-name: 'Run Rapise Test Set (Node)'
+name: 'Run RapiseLauncher on Node.js'
 description: 'Install Rapise (Node.js) & Run Test Set using RapiseLauncher'
 author: 'Inflectra'
 
@@ -13,28 +13,28 @@ inputs:
     default: ''
   spira_url:
     description: 'Spira server URL. Short form: https://server/ (requires spira_project_id and spira_test_set_id). Full form: https://server/9/TestSet/925.aspx (project_id and test_set_id extracted automatically).'
-    required: false
-    default: ''
+    required: true
+    default: 'https://myserver.spiraservice.net/'
   spira_username:
     description: 'Spira username. Not needed if spira_config is set.'
-    required: false
-    default: ''
+    required: true
+    default: 'myuser'
   spira_api_key:
     description: 'Spira API key (RSS Token). Not needed if spira_config is set.'
-    required: false
-    default: ''
+    required: true
+    default: '${{ secrets.SPIRA_API_KEY }}'
   spira_project_id:
     description: 'Spira Product/Project ID. Optional.'
     required: false
     default: ''
   spira_test_set_id:
     description: 'Spira Test Set ID. May be an array, i.e. "1,3,15" to execute several test sets. Not needed if spira_url contains the full test set path.'
-    required: false
-    default: ''
+    required: true
+    default: '925'
   spira_automation_host:
     description: 'Automation Host Token defined for a given project'
-    required: false
-    default: ''
+    required: true
+    default: 'GHA'
   install_rapise:
     description: 'Whether Rapise needs to be installed'
     required: false
