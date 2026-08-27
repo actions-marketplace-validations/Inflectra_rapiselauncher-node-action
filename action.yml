@@ -22,7 +22,7 @@ inputs:
   spira_api_key:
     description: 'Spira API key (RSS Token). Not needed if spira_config is set.'
     required: true
-    default: '${{ secrets.SPIRA_API_KEY }}'
+    default: '{00000000-0000-0000-0000-000000000000}'
   spira_project_id:
     description: 'Spira Product/Project ID. Optional.'
     required: false
@@ -30,7 +30,7 @@ inputs:
   spira_test_set_id:
     description: 'Spira Test Set ID. May be an array, i.e. "1,3,15" to execute several test sets. Not needed if spira_url contains the full test set path.'
     required: true
-    default: '925'
+    default: ''
   spira_automation_host:
     description: 'Automation Host Token defined for a given project'
     required: true
@@ -42,7 +42,7 @@ inputs:
   rapise_version:
     description: 'Rapise version to install'
     required: false
-    default: '9.0.35.30'
+    default: '9.0.35.37'
   node_version:
     description: 'Node.js version to set up'
     required: false
@@ -59,6 +59,10 @@ inputs:
     description: 'Path to Git project (for Spira tests stored in Git)'
     required: false
     default: ''
+  report:
+    description: 'Path to file for JUnit XML results output'
+    required: false
+    default: 'rapise-test-results.xml'
   upload_artifacts:
     description: 'Upload artifacts (working folder) after execution'
     required: false
@@ -107,6 +111,7 @@ runs:
         INPUT_RAPISE_PARAMS: ${{ inputs.rapise_params }}
         INPUT_TIMEOUT_MINUTES: ${{ inputs.timeout_minutes }}
         INPUT_GIT_ROOT: ${{ inputs.git_root }}
+        INPUT_REPORT: ${{ inputs.report }}
 
     - name: Collect artifacts
       if: always() && inputs.upload_artifacts == 'true'
